@@ -1,2 +1,2 @@
 Link database:
-    - https://www.kaggle.com/andrewmvd/face-mask-detection
+    - https://www.kaggle.com/ashishjangra27/face-mask-12k-images-dataset
