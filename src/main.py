@@ -18,15 +18,24 @@ import os
 import shutil
 import matplotlib.pyplot as plt
 
+# ------------------------------------------------------------
+
+
+#########################
+## PREPARANDO OS DADOS
+
+# Dataset: https://www.kaggle.com/omkargurav/face-mask-dataset
+#   Organizaremos nossos dados em conjuntos de treinamento, validação e teste -> Manualmente
+#   Movendo subconjuntos de dados para subdiretórios para cada conjunto de dados separado.
+
+# ----------
+# Diretório
+#   Localização dos diferentes conjuntos de dados
+
+
+
 path = '../database/annotations/'
 
-info_dataset = {
-    "image_path" : [],
-    "status_mask" : [],
-    "path_validation" : []
-}
-
-print((os.listdir(path))[0])
 
 
 
