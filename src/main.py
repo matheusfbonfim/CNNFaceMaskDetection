@@ -2,7 +2,7 @@
 CNN-Face-Mask-Detection.ipynb
 
 Original file is located at
-    https://colab.research.google.com/drive/11wtEKIz5voAKmK_FkdYUMrYIFylAB5xn?usp=sharing
+    https://colab.research.google.com/drive/1UCvyHJ-dbCfVyzztk6uch3Pf6ZD-9VTm?usp=sharing
 """
 ## =====================================
 ## [0] IMPORTANDO BIBLIOTECAS
@@ -52,7 +52,7 @@ valid_gen = ImageDataGenerator(rescale = 1./255)
 test_gen  = ImageDataGenerator(rescale = 1./255)
 
 ## ---------------------------------------
-##  [1.1.2] Flow_from_directory**
+##  [1.1.2] Flow_from_directory
 
 train_batches = train_gen.flow_from_directory(directory=path_train, batch_size=32, color_mode='rgb',
                                               target_size=(200, 200), seed = 42, class_mode='binary')
@@ -67,6 +67,9 @@ test_batches = test_gen.flow_from_directory(directory=path_test, batch_size=32, 
 # Vendo os rotulos e os dados gerados
 print(train_batches.class_indices)  # Rede neural precisa de indices categoricos em formato inteiro
 
+
+## =====================================
+## [1.2] Verificando as imagens
 
 # Verificação em tempo de execucao da quantidade de imagens 
 #assert train_batches.n == 10000
@@ -97,7 +100,7 @@ print(labels)
 
 ## =====================================
 ## =====================================
-## [2] MODELO - CONSTRUINDO UMA REDE NEURAL CONVOLUCIONAL
+## [2] MODELO - REDE NEURAL CONVOLUCIONAL
 
 images.shape    # Os dados de treinamento são imagens de pessoas: 64 amostras, cada uma com 200 por 200 pixels,
                 # e com ultima dimensão de 3 canais devido ao RGB
@@ -126,7 +129,6 @@ model.add(Conv2D(filters=64, kernel_size=(3, 3), activation='relu', padding = 's
 # MaxPooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
-
 ## Flatten
 model.add(Flatten())
 model.add(Dropout(0.5))
@@ -141,6 +143,7 @@ model.add(Dropout(0.5))
 
 # Saida da rede é uma camada totalmente conectada com uma unidade para cada classe: 2 tipos
 model.add(Dense(2, activation='softmax'))
+
 
 ## =====================================
 ### [2.2] Visualizando o modelo
