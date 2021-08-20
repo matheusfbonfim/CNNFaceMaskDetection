@@ -7,6 +7,7 @@ Original file is located at
 ## =====================================
 ## [0] IMPORTANDO BIBLIOTECAS
 
+import numpy as np
 # Sequential model
 from keras.models import Sequential
 # Bibliotecas - Camadas
@@ -47,12 +48,23 @@ path_test = '../database/New Masks Dataset/Validation'    # Caminho - Teste
 ## ---------------------------------------
 ## [1.1.1] ImageDataGenerator
 
+# Usaremos a funcionalidade Image Data Generator de Keras para lidar com nossos dados de entrada
+# Contribui substituindo as imagens de treinamento originais por versões aumentadas das mesmas,
+# enquanto o modelo é treinado nelas.
+
+
+# shear_range - significa que a imagem será distorcida ao longo de um eixo
+# zoom_range - Amplia aleatoriamente a imagem e adiciona novos valores de pixel ao redor da imagem
+# ou interpola valores de pixel respectivamente
 train_gen = ImageDataGenerator (rescale = 1./255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True)
 valid_gen = ImageDataGenerator(rescale = 1./255)
 test_gen  = ImageDataGenerator(rescale = 1./255)
 
 ## ---------------------------------------
 ##  [1.1.2] Flow_from_directory
+
+# Chama-se o fluxo de diretorio, no qual é passado os dados reais e especificado
+# como queremos que esses dados sejam processados
 
 train_batches = train_gen.flow_from_directory(directory=path_train, batch_size=32, color_mode='rgb',
                                               target_size=(200, 200), seed = 42, class_mode='binary')
@@ -72,9 +84,9 @@ print(train_batches.class_indices)  # Rede neural precisa de indices categoricos
 ## [1.2] Verificando as imagens
 
 # Verificação em tempo de execucao da quantidade de imagens 
-#assert train_batches.n == 10000
-#assert valid_batches.n == 800
-#assert test_batches.n == 992
+#assert train_batches.n == 600
+#assert valid_batches.n == 306
+#assert test_batches.n == 100
 #assert train_batches.num_classes == valid_batches.num_classes == test_batches.num_classes == 2
 
 # Pegando um unico lote de imagens e as labels  do train_batches
@@ -129,10 +141,12 @@ model.add(Conv2D(filters=64, kernel_size=(3, 3), activation='relu', padding = 's
 # MaxPooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
+##---------------------------------------
 ## Flatten
 model.add(Flatten())
 model.add(Dropout(0.5))
 
+##---------------------------------------
 ## MLP
 model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.5))
@@ -141,18 +155,23 @@ model.add(Dropout(0.5))
 # model.add(Dense(128, activation='relu'))
 # model.add(Dropout(0.5))
 
+##---------------------------------------
 # Saida da rede é uma camada totalmente conectada com uma unidade para cada classe: 2 tipos
+  # Usa a função de ativação softmax para decidir qual das tres classes foi apresentada
+    # Nos dá a probabilidade para cada saída correspondente
 model.add(Dense(2, activation='softmax'))
 
 
 ## =====================================
 ### [2.2] Visualizando o modelo
 
+##---------------------------------------
 # summarize model
 model.summary()
 
+##---------------------------------------
 # Plotando o modelo
-plot_model(model, to_file='plot_model.png', show_shapes=True, show_layer_names=True)
+plot_model(model, to_file='../model/plot_model.png', show_shapes=True, show_layer_names=True)
 
 
 ## =====================================
@@ -167,8 +186,9 @@ model.compile(optimizer= 'adam', loss='sparse_categorical_crossentropy', metrics
 # O retorno de chamada é usado em conjunto com o treinamento model.fit()para salvar um modelo
 # ou pesos (em um arquivo de ponto de verificação) em algum intervalo, para que o modelo ou pesos
 # possam ser carregados posteriormente para continuar o treinamento a partir do estado salvo.
-model_save = ModelCheckpoint('face-mask-detection.model', monitor = 'val_loss', verbose = 0, save_best_only=True, mode = 'auto')
+model_save = ModelCheckpoint('../model/face-mask-detection.h5', monitor = 'val_loss', verbose = 0, save_best_only=True, mode = 'auto')
 
+##---------------------------------------
 model.fit(x=train_batches, validation_data=valid_batches, epochs = 20, callbacks=[model_save],steps_per_epoch = len(train_batches))#
 
 ## =====================================
