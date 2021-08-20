@@ -1,2 +1,4 @@
 .idea
 .database
+/model/face-mask-detection.h5
+/database/
