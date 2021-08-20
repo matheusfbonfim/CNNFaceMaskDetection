@@ -90,13 +90,13 @@ print(train_batches.class_indices)  # Rede neural precisa de indices categoricos
 #assert train_batches.num_classes == valid_batches.num_classes == test_batches.num_classes == 2
 
 # Pegando um unico lote de imagens e as labels  do train_batches
-images, labels = next(train_batches)  # Deve haver 64 imagens (Tamanho do batch)
+images, labels = next(train_batches)  # Deve haver 32 imagens (Tamanho do batch)
 
 
 # Plotando as imagens do lote acima
 # Esta função irá traçar imagens na forma de uma grade com 1 linha e 10 colunas onde as imagens são colocadas
 def plotingImages(images_array):
-    fig, axes = plt.subplots(4, 16, figsize=(20, 20))
+    fig, axes = plt.subplots(4, 8, figsize=(20, 20))
     axes = axes.flatten()
     for img, ax in zip(images_array, axes):
         ax.imshow(img)
