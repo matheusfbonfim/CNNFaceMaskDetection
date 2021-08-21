@@ -1,7 +1,7 @@
 # CNN-Face-Mask-Detection
  
 
-## Model .h5 - Modelo
+## Model .h5 - Base
 https://drive.google.com/u/0/uc?id=1rVFYZOKmV1XoiK34k-h3ZatIm7Vlc7-B&export=download
 
 ## Model .h5 - Teste
