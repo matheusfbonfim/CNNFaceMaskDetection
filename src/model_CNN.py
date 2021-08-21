@@ -23,6 +23,9 @@ from sklearn.metrics import confusion_matrix
 # Plotar o modelo
 from keras.utils.vis_utils import plot_model
 
+# For Predicting on single Image
+from keras.preprocessing import image
+
 import itertools
 import os
 import matplotlib.pyplot as plt
@@ -32,14 +35,15 @@ import matplotlib.pyplot as plt
 ## =====================================
 ## [1] PRÉ-PROCESSAMENTO DE DADOS DE IMAGEM
 
-#   Dataset: https://www.kaggle.com/ashishjangra27/face-mask-12k-images-dataset
+#   Dataset: https://github.com/prajnasb/observations
     #   Organizaremos nossos dados em conjuntos de treinamento, validação e teste -> Manualmente
     #   Movendo subconjuntos de dados para subdiretórios - Conjunto de dados separado.
 
 # Caminhos para os dados de treinamento, validação e teste
-path_train = '../database/New Masks Dataset/Train'        # Caminho - Train
-path_valid = '../database/New Masks Dataset/Test'         # Caminho - Validação
-path_test = '../database/New Masks Dataset/Validation'    # Caminho - Teste
+path_train = '../database/Database-Github/Train'        # Caminho - Train
+path_valid = '../database/Database-Github/Test'          # Caminho - Validação
+path_test = '../database/Database-Github/Validation'     # Caminho - Teste
+
 
 
 ## =====================================
@@ -59,6 +63,7 @@ path_test = '../database/New Masks Dataset/Validation'    # Caminho - Teste
 train_gen = ImageDataGenerator (rescale = 1./255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True)
 valid_gen = ImageDataGenerator(rescale = 1./255)
 test_gen  = ImageDataGenerator(rescale = 1./255)
+
 
 ## ---------------------------------------
 ##  [1.1.2] Flow_from_directory
@@ -80,14 +85,9 @@ test_batches = test_gen.flow_from_directory(directory=path_test, batch_size=32, 
 print(train_batches.class_indices)  # Rede neural precisa de indices categoricos em formato inteiro
 
 
+
 ## =====================================
 ## [1.2] Verificando as imagens
-
-# Verificação em tempo de execucao da quantidade de imagens 
-#assert train_batches.n == 600
-#assert valid_batches.n == 306
-#assert test_batches.n == 100
-#assert train_batches.num_classes == valid_batches.num_classes == test_batches.num_classes == 2
 
 # Pegando um unico lote de imagens e as labels  do train_batches
 images, labels = next(train_batches)  # Deve haver 32 imagens (Tamanho do batch)
@@ -117,6 +117,7 @@ print(labels)
 images.shape    # Os dados de treinamento são imagens de pessoas: 64 amostras, cada uma com 200 por 200 pixels,
                 # e com ultima dimensão de 3 canais devido ao RGB
 
+
 ## =====================================
 ## [2.1] Construindo o modelo
 
@@ -129,7 +130,7 @@ model = Sequential()
 ## 1 - Inserindo a camada convolucional
 
 # A primeira camada está conectada a todos os pixels na imagem de entrada
-model.add(Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding = 'same' ,input_shape=(200, 200, 3)))
+model.add(Conv2D(filters=200, kernel_size=(3, 3), activation='relu', input_shape=(200, 200, 3)))
 # MaxPooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -137,7 +138,7 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 ##---------------------------------------
 ## 2 - Inserindo outra camada convolucional
 
-model.add(Conv2D(filters=64, kernel_size=(3, 3), activation='relu', padding = 'same'))
+model.add(Conv2D(filters = 100, kernel_size=(3, 3), activation='relu'))
 # MaxPooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -148,18 +149,14 @@ model.add(Dropout(0.5))
 
 ##---------------------------------------
 ## MLP
-model.add(Dense(128, activation='relu'))
-model.add(Dropout(0.5))
-
-# Adicionando uma outra camada oculta
-# model.add(Dense(128, activation='relu'))
-# model.add(Dropout(0.5))
+model.add(Dense(50, activation='relu'))
 
 ##---------------------------------------
 # Saida da rede é uma camada totalmente conectada com uma unidade para cada classe: 2 tipos
   # Usa a função de ativação softmax para decidir qual das tres classes foi apresentada
     # Nos dá a probabilidade para cada saída correspondente
 model.add(Dense(2, activation='softmax'))
+
 
 
 ## =====================================
@@ -180,17 +177,63 @@ plot_model(model, to_file='../model/plot_model.png', show_shapes=True, show_laye
 # Compilamos o modelo
 model.compile(optimizer= 'adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
+
 ## =====================================
 ### [2.4] Treinando e validando o modelo
 
 # O retorno de chamada é usado em conjunto com o treinamento model.fit()para salvar um modelo
 # ou pesos (em um arquivo de ponto de verificação) em algum intervalo, para que o modelo ou pesos
 # possam ser carregados posteriormente para continuar o treinamento a partir do estado salvo.
-model_save = ModelCheckpoint('../model/face-mask-detection.h5', monitor = 'val_loss', verbose = 0, save_best_only=True, mode = 'auto')
+model_save = ModelCheckpoint('../model/face-detector-model.h5', monitor = 'val_loss', verbose = 0, save_best_only=True, mode = 'auto')
 
 ##---------------------------------------
-model.fit(x=train_batches, validation_data=valid_batches, epochs = 20, callbacks=[model_save],steps_per_epoch = len(train_batches))#
+## Treinando o modelo
+history = model.fit(x=train_batches, validation_data=valid_batches, epochs = 20, callbacks=[model_save],steps_per_epoch = len(train_batches))
+
+
 
 ## =====================================
 ## [2.5] Testando o modelo
 print(f"evaluate: {model.evaluate(test_batches)}")
+
+
+##---------------------------------------
+# Predição de uma imagem do dataset
+
+test_image = image.load_img('/content/drive/MyDrive/Colab Notebooks/database/Pessoais/05.png', target_size = (200,200,3))
+test_image = image.img_to_array(test_image)
+test_image = np.expand_dims(test_image, axis = 0)
+result = model.predict(test_image)
+print(f"Result: {result}")
+
+if result[0][0]==1:
+    prediction = 'mask'
+else :
+    prediction = 'unmask'
+print(prediction)
+
+
+## =====================================
+## [2.7] Analisando os dados
+
+# SUMARIO - HISTORICO DA ACURACIA
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title('Model Accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['Training', 'Validation'], loc='lower right')
+plt.show()
+
+
+# SUMARIO - HISTORICO DA FUNCAO DE CUSTO
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Model Loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Training', 'Validation'], loc='upper right')
+
+plt.tight_layout()
+
+plt.show()
