@@ -5,8 +5,8 @@ from mtcnn.mtcnn import MTCNN
 
 
 cap = cv2.VideoCapture(0)
-model = load_model('../model/new-face-mask-detection.h5')
-# model = load_model('../model/detector.h5')
+
+model = load_model('../model/face-detector-model.h5')
 
 size = (200, 200)
 detector = MTCNN()
