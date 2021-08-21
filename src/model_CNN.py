@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 ## =====================================
 ## [1] PRÉ-PROCESSAMENTO DE DADOS DE IMAGEM
 
-#   Dataset: https://www.kaggle.com/prithwirajmitra/covid-face-mask-detection-dataset
+#   Dataset: https://www.kaggle.com/ashishjangra27/face-mask-12k-images-dataset
     #   Organizaremos nossos dados em conjuntos de treinamento, validação e teste -> Manualmente
     #   Movendo subconjuntos de dados para subdiretórios - Conjunto de dados separado.
 
