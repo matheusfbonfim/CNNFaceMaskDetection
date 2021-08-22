@@ -45,7 +45,6 @@ path_valid = '../database/Database-Github/Test'          # Caminho - Validação
 path_test = '../database/Database-Github/Validation'     # Caminho - Teste
 
 
-
 ## =====================================
 ## [1.1] Gerando o conjunto de dados de treinamento, validação/teste
 
@@ -83,7 +82,6 @@ test_batches = test_gen.flow_from_directory(directory=path_test, batch_size=32, 
 
 # Vendo os rotulos e os dados gerados
 print(train_batches.class_indices)  # Rede neural precisa de indices categoricos em formato inteiro
-
 
 
 ## =====================================
@@ -134,7 +132,6 @@ model.add(Conv2D(filters=200, kernel_size=(3, 3), activation='relu', input_shape
 # MaxPooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
-
 ##---------------------------------------
 ## 2 - Inserindo outra camada convolucional
 
@@ -156,7 +153,6 @@ model.add(Dense(50, activation='relu'))
   # Usa a função de ativação softmax para decidir qual das tres classes foi apresentada
     # Nos dá a probabilidade para cada saída correspondente
 model.add(Dense(2, activation='softmax'))
-
 
 
 ## =====================================
@@ -191,7 +187,6 @@ model_save = ModelCheckpoint('../model/face-detector-model.h5', monitor = 'val_l
 history = model.fit(x=train_batches, validation_data=valid_batches, epochs = 20, callbacks=[model_save],steps_per_epoch = len(train_batches))
 
 
-
 ## =====================================
 ## [2.5] Testando o modelo
 print(f"evaluate: {model.evaluate(test_batches)}")
@@ -223,6 +218,7 @@ plt.title('Model Accuracy')
 plt.ylabel('Accuracy')
 plt.xlabel('Epoch')
 plt.legend(['Training', 'Validation'], loc='lower right')
+plt.savefig('../model/history_accuracy.png', format='png')
 plt.show()
 
 
@@ -232,6 +228,7 @@ plt.plot(history.history['val_loss'])
 plt.title('Model Loss')
 plt.ylabel('Loss')
 plt.xlabel('Epoch')
+plt.savefig('../model/history_loss.png', format='png')
 plt.legend(['Training', 'Validation'], loc='upper right')
 
 plt.tight_layout()
