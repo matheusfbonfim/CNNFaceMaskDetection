@@ -35,7 +35,7 @@
 <h1 align="center">
    DETECÇÃO DE MÁSCARA FACIAL 
 <h2 align="center">
-   REDE CONVOLUCIONAL - CNN
+   REDE NEURAL CONVOLUCIONAL
 </h2>
 </h1>
 
