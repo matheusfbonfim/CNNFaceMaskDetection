@@ -1,8 +1,3 @@
-# CNN-Face-Mask-Detection
- 
-## Model .h5 - Oficial
-https://drive.google.com/file/d/1BrqH-ifa6gXy_hco1r0k3pVAVyOjJkdd/view?usp=sharing
-
 <!-- CAPA -->
 
 <!-- 
@@ -39,7 +34,7 @@ https://drive.google.com/file/d/1BrqH-ifa6gXy_hco1r0k3pVAVyOjJkdd/view?usp=shari
 
 <h1 align="center">
    DETECÇÃO DE MÁSCARA FACIAL - REDE CONVOLUCIONAL
-   <h2 align="center">
+<h2 align="center">
    FACE MASK DETECTION - CNN 
 </h2>
 </h1>
@@ -62,10 +57,8 @@ https://drive.google.com/file/d/1BrqH-ifa6gXy_hco1r0k3pVAVyOjJkdd/view?usp=shari
 <!-- Tópicos -->
 
 ## 💻 Sobre o projeto
-- Projeto desenvolvido durante o **[Next Level Week](https://nextlevelweek.com/)**, realizada pela **[@Rocketseat](https://github.com/Rocketseat)**.
-- Happy é um projeto desenvolvido com inspiração no dia das crianças. O objetivo é conectar as pessoas a orfanatos, permitindo tornar o dia das crianças mais especial 💜.
 
-## 📸 Screenshots
+## 📸 Detecção em tempo real
 
 
 ## 📃 Modelo 
@@ -85,16 +78,17 @@ Você pode visualizar o layout do projeto através do link abaixo:
 
 This project was developed with the following technologies:
 
- [<img src="https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=Keras&logoColor=white" alt="License" />]()
-- [TensorFlow](https://www.tensorflow.org/)
-- [OpenCV](https://opencv.org/)
+- [<img src="https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=Keras&logoColor=white" alt="License" />]()
+- [<img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=TensorFlow&logoColor=white" alt="License" />](https://www.tensorflow.org/)
+- [<img src="https://img.shields.io/badge/OpenCV-27338e?style=for-the-badge&logo=OpenCV&logoColor=white" />](https://opencv.org/)
 
 <!-- - [Expo][expo] -->
 
 ## ⛏ Tools
-- [Google Colab](https://colab.research.google.com/drive/1UCvyHJ-dbCfVyzztk6uch3Pf6ZD-9VTm?usp=sharing)
-- [PyCharm](https://www.jetbrains.com/pycharm/)
 
+
+- [<img src="https://img.shields.io/badge/Colab-F9AB00?style=for-the-badge&logo=googlecolab&color=525252" alt="License" />](https://colab.research.google.com/drive/1UCvyHJ-dbCfVyzztk6uch3Pf6ZD-9VTm?usp=sharing)
+- [<img src="https://img.shields.io/badge/pycharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=green" />]()
 
 ## 📁 Database
 
@@ -108,29 +102,28 @@ Conjunto de dados com **1651 imagens** pertecentes a duas classes
 
 ## 🔑 Pré-requisitos 
 
-Todas as dependências e bibliotecas necessárias para executar o projeto estão incluídas no arquivo [requirements.txt](https://github.com/matheusfbonfim/CNN-Face-Mask-Detection/blob/main/requirements.txt)
+- Todas as dependências e bibliotecas necessárias para executar o projeto estão incluídas no arquivo [requirements.txt](https://github.com/matheusfbonfim/CNN-Face-Mask-Detection/blob/main/requirements.txt)
+
+- O modelo Keras construído, compilado e treinado (.h5) pode ser baixado aqui - [Clique aqui para baixar](https://drive.google.com/file/d/1BrqH-ifa6gXy_hco1r0k3pVAVyOjJkdd/view?usp=sharing)
 
 
 ## 🚀 Como executar o projeto
 
    ```
    - Clone this repository:
-   $ git clone https://github.com/matheusfbonfim/happy
-
-   - Enter in directory:
-   $ cd happy
-
+   $ git clone https://github.com/matheusfbonfim/CNN-Face-Mask-Detection
+   
    - For install dependencies:
-   $ npm install
-
+   $ pip install -r requirements.txt 
+   
+   - Enter in directory:
+   $ cd src
+   
    - Execute application:
-   $ npm start
-
-   - Open your browser in:
-   http://localhost:5500/
+   $ python3 face-detection-real-time.py
    ```
 
-💡O Front End precisa que o Back End esteja sendo executado para funcionar.
+💡 Após o clone do repositório, adicionar o modelo keras baixado na pasta .model, assim sendo possível a detecção em tempo real com o OpenCV.
 
 ## :memo: License
 
@@ -142,9 +135,6 @@ Gostou? Deixe uma estrelinha para ajudar o projeto ⭐
 <h3 align="center">
 Feito com ❤️ por <a href="https://www.linkedin.com/in/matheusfbonfim/">Matheus Bonfim</a>
 <br><br>
-<a href="https://rocketseat.com.br">
-  <img alt="Made by Rocketseat" src="https://img.shields.io/badge/made%20by-Rocketseat-%237519C1">
-</a>
 </h3>
 </h3>
 
