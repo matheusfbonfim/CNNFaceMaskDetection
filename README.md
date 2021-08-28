@@ -33,9 +33,9 @@
 
 
 <h1 align="center">
-   DETECÇÃO DE MÁSCARA FACIAL - REDE CONVOLUCIONAL
+   DETECÇÃO DE MÁSCARA FACIAL 
 <h2 align="center">
-   FACE MASK DETECTION - CNN 
+   REDE CONVOLUCIONAL - CNN
 </h2>
 </h1>
 
