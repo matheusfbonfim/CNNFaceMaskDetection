@@ -43,7 +43,8 @@
 <!--INDEX-->
 <p align="center">
   <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#screenshots">Screenshots</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-detecção-em-tempo-real">Detecção</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-modelo">Modelo</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tools">Tools</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-executar-o-projeto">Como executar o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -58,18 +59,21 @@
 
 ## 💻 Sobre o projeto
 
+- Consiste na implementação de um modelo de CNN (Convolutional neural network) para detectar se uma pessoa está usando uma máscara facial ou não com sua webcam.
+- Basicamente, o modelo de rede neural convolucional é construído com a utilização do **TensorFlow** em conjunto com a biblioteca **Keras** e **OpenCV**.
+- Para construir o modelo, é usado um conjunto de dados de imagens de pessoas com e sem máscaras faciais.
+- Toda implementação pode ser vista no **[Google Colab](https://colab.research.google.com/drive/1UCvyHJ-dbCfVyzztk6uch3Pf6ZD-9VTm?usp=sharing)**.
+
+
+
 ## 📸 Detecção em tempo real
 
 
 ## 📃 Modelo 
 
-
 <h1 align="center">
   <img alt="Modelo" src=".github/Modelo.png" width="100%">
 </h1>
-
-## 🔖 Layout
-
 
 ## :rocket: Tecnologias
 
