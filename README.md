@@ -62,7 +62,7 @@
 - Consiste na implementação de um modelo de CNN (Convolutional neural network) para detectar com a utilização da webcam se uma pessoa está usando uma máscara facial ou não.
 - Basicamente, o modelo de rede neural convolucional é construído com a utilização do **TensorFlow** em conjunto com a biblioteca **Keras** e **OpenCV**.
 - Para construir o modelo, é usado um conjunto de dados de imagens de pessoas com e sem máscaras faciais.
-- Toda implementação pode ser vista no **[Google Colab](https://colab.research.google.com/drive/1UCvyHJ-dbCfVyzztk6uch3Pf6ZD-9VTm?usp=sharing)**.
+- Toda implementação pode ser vista de forma detalhada no **[Google Colab](https://colab.research.google.com/drive/1UCvyHJ-dbCfVyzztk6uch3Pf6ZD-9VTm?usp=sharing)** e no **[Youtube](https://www.youtube.com/watch?v=58JmETGFQZk&t=786s&ab_channel=MatheusdeFariasBonfim)**.
 
 
 
