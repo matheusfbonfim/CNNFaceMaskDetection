@@ -71,6 +71,9 @@
 
 ## 📃 Modelo 
 
+- A estrutura da implementação é ilustrada na imagem abaixo.
+- O modelo construído, compilado e treinado (.h5) pode ser baixado aqui - [Clique aqui para baixar](https://drive.google.com/file/d/1BrqH-ifa6gXy_hco1r0k3pVAVyOjJkdd/view?usp=sharing)
+
 <h1 align="center">
   <img alt="Modelo" src=".github/Modelo.png" width="100%">
 </h1>
