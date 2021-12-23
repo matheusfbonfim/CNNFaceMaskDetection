@@ -68,6 +68,9 @@
 
 ## 📸 Detecção em tempo real
 
+<h1 align="center">
+  <img alt="demonstracao" src=".github/demonstracao.gif" width="50%">
+</h1>
 
 ## 📃 Modelo 
 
