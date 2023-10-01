@@ -64,13 +64,9 @@
 - Para construir o modelo, é usado um conjunto de dados de imagens de pessoas com e sem máscaras faciais.
 - Toda implementação pode ser vista de forma detalhada no **[Google Colab](https://colab.research.google.com/drive/1UCvyHJ-dbCfVyzztk6uch3Pf6ZD-9VTm?usp=sharing)** e no **[Youtube](https://www.youtube.com/watch?v=58JmETGFQZk&t=786s&ab_channel=MatheusdeFariasBonfim)**.
 
-
-
 ## 📸 Detecção em tempo real
 
-<h1 align="center">
-  <img alt="demonstracao" src=".github/demonstracao.gif" width="50%">
-</h1>
+![demonstracao](https://github.com/matheusfbonfim/CNNFaceMaskDetection/blob/main/.github/demonstracao.gif)
 
 ## 📃 Modelo 
 
